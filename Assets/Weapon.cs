@@ -10,7 +10,7 @@ public class Weapon : ScriptableObject
     public float shotDelay = 1F;
     public float accuracyDegrees = 0;
     public float range = 5F;
-    public float damage = 1F;
+    public int damage = 1;
     public float bulletVelocity = 5F;
     public Sprite bulletSprite;
 }

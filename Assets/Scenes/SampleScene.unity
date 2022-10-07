@@ -5045,6 +5045,28 @@ MonoBehaviour:
   weaponScriptable: {fileID: 11400000, guid: 66eb34c6c4d97054c8b3d04f085b6b73, type: 2}
   bulletPrefab: {fileID: 3803236672737280676, guid: ee75d6f8061a62f45b2ed424ee60936c,
     type: 3}
+--- !u!1 &1386840058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2972617641253083033, guid: 83962f2dde2c6ad44850c8e0e2d2b13a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2972617642014828643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1386840066
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386840058}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1784617232
 GameObject:
   m_ObjectHideFlags: 0

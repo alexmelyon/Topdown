@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    public int HP = 1;
     public float speed = 1F;
     public float attackDistance = 1F;
     public float pauseDelaySec = 1F;
@@ -58,8 +59,9 @@ public class Monster : MonoBehaviour
         public override void Update()
         {
             //var direction = (go._player.transform.position - go.transform.position);
-            var direction = (go._player.transform.position - go.transform.position);
-            go.transform.position = startPos + direction * go.attackShift.Evaluate(_attackEnd - Time.time);
+            var direction = go._player.transform.position - go.transform.position;
+            float lastKeyTime = go.attackShift.keys[go.attackShift.keys.Length - 1].time;
+            go.transform.position = startPos + direction * go.attackShift.Evaluate(lastKeyTime - (_attackEnd - Time.time));
 
             if(Time.time > _attackEnd)
             {
@@ -93,5 +95,34 @@ public class Monster : MonoBehaviour
     void Update()
     {
         _state.Update();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("BULLET 2 " + collision.gameObject.name);
+        var bullet = collision.gameObject.GetComponent<Bullet>();
+        if (bullet)
+        {
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("BULLET " + collision.gameObject.name);
+        var bullet = collision.gameObject.GetComponent<Bullet>();
+        if (bullet)
+        {
+            HP -= bullet.damage;
+            if(HP <= 0)
+            {
+                Die();
+            }
+            Destroy(bullet);
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

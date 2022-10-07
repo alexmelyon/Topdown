@@ -22,7 +22,6 @@ public class Gun : MonoBehaviour
             var monster = nextMonster();
             if (monster != null)
             {
-                Debug.Log("SHOT");
                 Shot(monster);
                 _nextShot = Time.time + weaponScriptable.shotDelay;
             }
@@ -31,18 +30,22 @@ public class Gun : MonoBehaviour
 
     void Shot(Monster monster)
     {
-        var go = Instantiate<Bullet>(bulletPrefab);
-        go.transform.position = transform.position;
-        go.damage = weaponScriptable.damage;
-        go.GetComponent<SpriteRenderer>().sprite = weaponScriptable.bulletSprite;
+        var bullet = Instantiate<Bullet>(bulletPrefab, transform.position, Quaternion.identity, null);
+        //bullet.transform.position = transform.position;
+        bullet.damage = weaponScriptable.damage;
+        bullet.GetComponent<SpriteRenderer>().sprite = weaponScriptable.bulletSprite;
         var dir = (monster.transform.position - transform.position).normalized;
-        go.GetComponent<Rigidbody2D>().velocity = weaponScriptable.bulletVelocity * dir;
+        bullet.GetComponent<Rigidbody2D>().velocity = weaponScriptable.bulletVelocity * dir;
+        Destroy(bullet.gameObject, 1F);
     }
 
     Monster nextMonster()
     {
         var monsters = FindObjectsOfType<Monster>();
-        //var closest = monsters.ToList().Min(it => (it.transform.position - transform.position));
+        if(monsters.Length == 0)
+        {
+            return null;
+        }
         var closest = monsters.Aggregate((min, next) => 
             (min.transform.position - transform.position).magnitude < (next.transform.position - transform.position).magnitude
             ? min
