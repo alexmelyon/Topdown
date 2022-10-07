@@ -31,7 +31,6 @@ public class Gun : MonoBehaviour
     void Shot(Monster monster)
     {
         var bullet = Instantiate<Bullet>(bulletPrefab, transform.position, Quaternion.identity, null);
-        //bullet.transform.position = transform.position;
         bullet.damage = weaponScriptable.damage;
         bullet.GetComponent<SpriteRenderer>().sprite = weaponScriptable.bulletSprite;
         var dir = (monster.transform.position - transform.position).normalized;

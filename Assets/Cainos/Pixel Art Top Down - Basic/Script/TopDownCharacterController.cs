@@ -6,6 +6,7 @@ namespace Cainos.PixelArtTopDown_Basic
 {
     public class TopDownCharacterController : MonoBehaviour
     {
+        public int HP = 100;
         public float speed;
 
         private Animator animator;
@@ -55,6 +56,21 @@ namespace Cainos.PixelArtTopDown_Basic
             animator.SetBool("IsMoving", dir.magnitude > 0);
 
             rigid.velocity = speed * dir;
+        }
+
+        public void Damage(Monster who)
+        {
+            Debug.Log("DAMAGE " + who.damage);
+            HP -= who.damage;
+            if(HP <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

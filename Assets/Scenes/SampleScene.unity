@@ -4959,6 +4959,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5628018141983903116, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
 --- !u!4 &874176635 stripped
@@ -5324,6 +5329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AcidOozeIdleSide
+      objectReference: {fileID: 0}
+    - target: {fileID: 2972617641253083036, guid: 83962f2dde2c6ad44850c8e0e2d2b13a,
+        type: 3}
+      propertyPath: damage
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2972617641253083039, guid: 83962f2dde2c6ad44850c8e0e2d2b13a,
         type: 3}

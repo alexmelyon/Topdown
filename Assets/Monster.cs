@@ -9,6 +9,8 @@ public class Monster : MonoBehaviour
 {
     public int HP = 1;
     public float speed = 1F;
+    public int damage = 1;
+    public float damageDelay = 0.1F;
     public float attackDistance = 1F;
     public float pauseDelaySec = 1F;
     public AudioSource biteSound;
@@ -45,6 +47,7 @@ public class Monster : MonoBehaviour
     {
         float _attackEnd = 0F;
         Vector3 startPos;
+        bool _isPlayerDamaged = false;
         public AttackState(Monster go) : base(go)
         {
             var end = go.attackShift.keys[go.attackShift.keys.Length - 1].time;
@@ -62,6 +65,12 @@ public class Monster : MonoBehaviour
             var direction = go._player.transform.position - go.transform.position;
             float lastKeyTime = go.attackShift.keys[go.attackShift.keys.Length - 1].time;
             go.transform.position = startPos + direction * go.attackShift.Evaluate(lastKeyTime - (_attackEnd - Time.time));
+
+            if (!_isPlayerDamaged)
+            {
+                go._player.Damage(go);
+                _isPlayerDamaged = true;
+            }
 
             if(Time.time > _attackEnd)
             {
